@@ -1,0 +1,7 @@
+.comment {
+    margin: 10px;
+}
+
+.comment > span {
+    color: #888;
+}
