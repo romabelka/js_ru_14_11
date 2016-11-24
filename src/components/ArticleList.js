@@ -9,6 +9,25 @@ class ArticleList extends Component {
         isOpen: PropTypes.func.isRequired,
         toggleOpenItem: PropTypes.func.isRequired
     }
+
+    componentWillMount() {
+        console.log('---', 'mounting')
+    }
+
+    componentDidMount() {
+        console.log('---', 'mounted')
+    }
+
+    componentWillReceiveProps(nexProps) {
+        //console.log('isEqual', Object.keys(nexProps).every(key => nexProps[key] == this.props[key]))
+        //console.log('---', 'AL receiving props')
+    }
+
+    componentWillUpdate() {
+        //console.log('---', 'AL will update')
+    }
+
+
     render() {
         const { articles, isOpen, toggleOpenItem } = this.props
 

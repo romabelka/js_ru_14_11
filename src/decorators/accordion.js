@@ -8,6 +8,14 @@ export default (Component) => class AccordionDecorator extends React.Component {
         }
     }
 
+    componentWillReceiveProps() {
+        //console.log('---', 'accordion receiving props')
+    }
+
+    componentWillUpdate() {
+        ///console.log('---', 'accordion will update')
+    }
+
     render() {
         return <Component {...this.props} isOpen = {this.isOpen} toggleOpenItem = {this.toggleOpenItem}/>
     }
