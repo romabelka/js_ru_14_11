@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import { findDOMNode } from 'react-dom'
 import CommentList from './CommentList'
 
 class Article extends Component {
@@ -11,6 +12,10 @@ class Article extends Component {
 
     componentWillUpdate() {
         console.log('---', 'updating Article')
+    }
+
+    componentDidUpdate() {
+        console.log('---', findDOMNode(this.refs.comments))
     }
 
     render() {
@@ -30,7 +35,7 @@ class Article extends Component {
         return (
             <div>
                 <p>{article.text}</p>
-                <CommentList comments = {article.comments} />
+                <CommentList comments = {article.comments} ref = "comments" />
             </div>
         )
     }

@@ -15,7 +15,8 @@ class ArticleList extends Component {
     }
 
     componentDidMount() {
-        console.log('---', 'mounted')
+        console.log('---', 'mounted', this.containerRef)
+        console.log('---', this.refs)
     }
 
     componentWillReceiveProps(nexProps) {
@@ -25,6 +26,10 @@ class ArticleList extends Component {
 
     componentWillUpdate() {
         //console.log('---', 'AL will update')
+    }
+
+    getContainerRef = ref => {
+        this.containerRef = ref
     }
 
 
@@ -42,7 +47,7 @@ class ArticleList extends Component {
         ))
 
         return (
-            <ul>
+            <ul ref = {this.getContainerRef}>
                 {articleItems}
             </ul>
         )
