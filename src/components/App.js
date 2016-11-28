@@ -3,6 +3,7 @@ import ArticleList from './ArticleList'
 import Select from 'react-select'
 import Chart from './Chart'
 import DateRange from './DateRange'
+import Counter from './Counter'
 import 'react-select/dist/react-select.css'
 
 class App extends Component {
@@ -21,6 +22,7 @@ class App extends Component {
         }))
         return (
             <div>
+                <Counter />
                 <Chart />
                 <DateRange />
                 <ArticleList articles={this.props.articles} />
