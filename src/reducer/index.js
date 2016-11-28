@@ -1,9 +1,8 @@
-export default (state, action) => {
-    const { type, payload } = action
+import { combineReducers } from 'redux'
+import articleReducer from './articles'
+import counterReducer from './counter'
 
-    switch (type) {
-        case 'INCREMENT': return state + 1
-    }
-
-    return state
-}
+export default combineReducers({
+    articles: articleReducer,
+    count: counterReducer
+})

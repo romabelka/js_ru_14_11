@@ -7,16 +7,13 @@ import Counter from './Counter'
 import 'react-select/dist/react-select.css'
 
 class App extends Component {
-    static propTypes = {
-        articles: PropTypes.array.isRequired
-    };
 
     state = {
         selected: null
     }
 
     render() {
-        const options = this.props.articles.map(article => ({
+        const options = [].map(article => ({
             label: article.title,
             value: article.id
         }))
@@ -25,7 +22,7 @@ class App extends Component {
                 <Counter />
                 <Chart />
                 <DateRange />
-                <ArticleList articles={this.props.articles} />
+                <ArticleList />
                 <Select options = {options} value = {this.state.selected} onChange = {this.handleChange} multi = {true}/>
             </div>
         )

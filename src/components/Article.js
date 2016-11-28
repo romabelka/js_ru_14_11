@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { findDOMNode } from 'react-dom'
 import CommentList from './CommentList'
+import { deleteArticle } from '../AC/articles'
+import { connect } from 'react-redux'
 
 class Article extends Component {
 
@@ -23,6 +25,7 @@ class Article extends Component {
         return (
             <section>
                 <h3 onClick = {toggleOpen}>{article.title}</h3>
+                <a href = "#" onClick = {this.handleDeleteArticle}>delete me</a>
                 {this.getBody()}
             </section>
         )
@@ -39,6 +42,12 @@ class Article extends Component {
             </div>
         )
     }
+
+    handleDeleteArticle = ev => {
+        ev.preventDefault()
+        const { deleteArticle, article } = this.props
+        deleteArticle(article.id)
+    }
 }
 
 Article.propTypes = {
@@ -46,8 +55,12 @@ Article.propTypes = {
         title: PropTypes.string.isRequired,
         comments: PropTypes.array,
         text: PropTypes.string
-    }).isRequired
+    }).isRequired,
+    //from connect
+    deleteArticle: PropTypes.func
 }
 
 
-export default Article
+export default connect(null, {
+    deleteArticle
+})(Article)
