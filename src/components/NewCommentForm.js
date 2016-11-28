@@ -6,9 +6,12 @@ class NewCommentForm extends Component {
         user: ''
     }
 
-    handleChange = field => ev => this.setState({
-        [field]: ev.target.value
-    })
+    handleChange = field => ev => {
+        if (ev.target.value.length > 5) return
+        this.setState({
+            [field]: ev.target.value
+        })
+    }
 
     handleSubmit = ev => {
         ev.preventDefault()
