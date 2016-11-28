@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import Comment from './Comment'
 import toggleOpen from '../decorators/toggleOpen'
+import NewCommentForm from './NewCommentForm'
 
 class CommentList extends Component {
     static propTypes = {
@@ -28,7 +29,7 @@ class CommentList extends Component {
         return (
             <div>
                 {this.getButton()}
-                {this.getList()}
+                {this.getBody()}
             </div>
         )
     }
@@ -40,11 +41,12 @@ class CommentList extends Component {
         return <a href="#" onClick = {toggleOpen}>{isOpen ? 'hide' : 'show'} comments</a>
     }
 
-    getList() {
+    getBody() {
         const { comments, isOpen } = this.props
-        if (!isOpen || !comments.length) return null
+        const commentForm = <NewCommentForm />
+        if (!isOpen || !comments.length) return <div>{commentForm}</div>
         const commentItems = comments.map(comment => <li key = {comment.id}><Comment comment = {comment} /></li>)
-        return <ul>{commentItems}</ul>
+        return <div><ul>{commentItems}</ul>{commentForm}</div>
     }
 }
 
