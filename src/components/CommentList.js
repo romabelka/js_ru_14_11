@@ -54,5 +54,5 @@ class CommentList extends Component {
 }
 
 export default connect((state, props) => ({
-    comments: props.commentIds.map(id => state.comments[id])
+    comments: props.commentIds.map(id => state.comments.get(id))
 }))(toggleOpen(CommentList))
