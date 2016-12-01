@@ -13,6 +13,7 @@ export default (filters = defaultFilters, action) => {
 
     switch (type) {
         case CHANGE_DATE_RANGE:
+//            return Object.assign({}, filters, { dateRange: payload.dateRange })
             return {...filters, dateRange: payload.dateRange}
 
         case CHANGE_SELECTION:
