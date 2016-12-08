@@ -1,7 +1,6 @@
 import { ADD_COMMENT } from '../constants'
 import { normalizedComments } from '../fixtures'
 import { arrayToMap} from '../utils'
-import { Map } from 'immutable'
 
 const defaultComments = arrayToMap(normalizedComments)
 
