@@ -60,11 +60,14 @@ export default connect(state => {
     const selected = filters.selected
     const { from, to } = filters.dateRange
 
-    const filteredArticles = articles.filter(article => {
-        const published = Date.parse(article.date)
-        return (!selected.length || selected.includes(article.id)) &&
-            (!from || !to || (published > from && published < to))
-    })
+    const filteredArticles = articles
+        .valueSeq()
+        .toArray()
+        .filter(article => {
+            const published = Date.parse(article.date)
+            return (!selected.length || selected.includes(article.id)) &&
+                (!from || !to || (published > from && published < to))
+        })
     return {
         articles: filteredArticles
     }

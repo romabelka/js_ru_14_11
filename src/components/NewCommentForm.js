@@ -15,7 +15,7 @@ class NewCommentForm extends Component {
 
     handleSubmit = ev => {
         ev.preventDefault()
-        console.log('---', 'adding comment')
+        this.props.addComment(this.state, this.props.articleId)
         this.setState({
             user: '',
             text: ''
