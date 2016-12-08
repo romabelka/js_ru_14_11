@@ -3,6 +3,7 @@ import Article from './Article'
 import accordion from '../decorators/accordion'
 import { connect } from 'react-redux'
 import { loadAllArticles } from '../AC/articles'
+import Loader from './Loader'
 
 class ArticleList extends Component {
     static propTypes = {
@@ -22,7 +23,8 @@ class ArticleList extends Component {
 
 
     render() {
-        const { articles, isOpen, toggleOpenItem } = this.props
+        const { articles, loading, isOpen, toggleOpenItem } = this.props
+        if (loading) return <Loader/>
 
         const articleItems = articles.map(article => (
             <li key = {article.id}>
@@ -47,7 +49,7 @@ export default connect(state => {
     const selected = filters.selected
     const { from, to } = filters.dateRange
 
-    const filteredArticles = articles
+    const filteredArticles = articles.entities
         .valueSeq()
         .toArray()
         .filter(article => {
@@ -56,6 +58,7 @@ export default connect(state => {
                 (!from || !to || (published > from && published < to))
         })
     return {
-        articles: filteredArticles
+        articles: filteredArticles,
+        loading: articles.loading
     }
 }, { loadAllArticles })(accordion(ArticleList))

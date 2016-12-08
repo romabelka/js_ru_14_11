@@ -1,4 +1,4 @@
-import { Map, fromJS } from 'immutable'
+import { Map, Record, fromJS } from 'immutable'
 
 export function arrayToMap(arr, Model) {
     return arr.reduce((acc, el) => {
@@ -6,3 +6,8 @@ export function arrayToMap(arr, Model) {
         return acc.set(el.id, immutableElement)
     }, new Map({}))
 }
+
+export const ReducerState = Record({
+    entities: new Map({}),
+    loading: false
+})
