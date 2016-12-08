@@ -2,6 +2,7 @@ import React, { Component, PropTypes }  from 'react'
 import Article from './Article'
 import accordion from '../decorators/accordion'
 import { connect } from 'react-redux'
+import { loadAllArticles } from '../AC/articles'
 
 class ArticleList extends Component {
     static propTypes = {
@@ -11,22 +12,8 @@ class ArticleList extends Component {
         toggleOpenItem: PropTypes.func.isRequired
     }
 
-    componentWillMount() {
-        console.log('---', 'mounting')
-    }
-
     componentDidMount() {
-        console.log('---', 'mounted', this.containerRef)
-        console.log('---', this.refs)
-    }
-
-    componentWillReceiveProps(nexProps) {
-        //console.log('isEqual', Object.keys(nexProps).every(key => nexProps[key] == this.props[key]))
-        //console.log('---', 'AL receiving props')
-    }
-
-    componentWillUpdate() {
-        //console.log('---', 'AL will update')
+        this.props.loadAllArticles()
     }
 
     getContainerRef = ref => {
@@ -71,4 +58,4 @@ export default connect(state => {
     return {
         articles: filteredArticles
     }
-})(accordion(ArticleList))
+}, { loadAllArticles })(accordion(ArticleList))

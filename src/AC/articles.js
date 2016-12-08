@@ -1,4 +1,4 @@
-import { DELETE_ARTICLE } from '../constants'
+import { DELETE_ARTICLE, LOAD_ALL_ARTICLES } from '../constants'
 
 export function deleteArticle(articleId) {
     return {
@@ -6,5 +6,12 @@ export function deleteArticle(articleId) {
         payload: {
             articleId
         }
+    }
+}
+
+export function loadAllArticles() {
+    return {
+        type: LOAD_ALL_ARTICLES,
+        callAPI: '/api/article'
     }
 }
