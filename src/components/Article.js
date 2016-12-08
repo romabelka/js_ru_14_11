@@ -18,7 +18,7 @@ class Article extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.isOpen && !this.props.isOpen) this.props.loadArticle(this.props.article.id)
+        if (nextProps.isOpen && !this.props.isOpen && !nextProps.article.text) this.props.loadArticle(this.props.article.id)
     }
 
     componentDidUpdate() {
