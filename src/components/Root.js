@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { Provider } from 'react-redux'
-import App from './App'
 import store from '../store'
+import Menu from './Menu'
+import MenuItem from './Menu/MenuItem'
 
 class Root extends Component {
     static propTypes = {
@@ -11,7 +12,14 @@ class Root extends Component {
     render() {
         return (
             <Provider store={store}>
-                <App />
+                <div>
+                    <Menu>
+                        <MenuItem link = "/articles" name="Articles index"/>
+                        <MenuItem link = "/filters" name="Filters"/>
+                        <MenuItem link = "/counter" name="Counter"/>
+                    </Menu>
+                    {this.props.children}
+                </div>
             </Provider>
         )
     }
