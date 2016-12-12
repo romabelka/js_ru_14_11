@@ -1,9 +1,9 @@
 import React, { Component, PropTypes }  from 'react'
-import Article from './Article'
 import accordion from '../decorators/accordion'
 import { connect } from 'react-redux'
 import { loadAllArticles } from '../AC/articles'
 import Loader from './Loader'
+import { Link } from 'react-router'
 
 class ArticleList extends Component {
     static propTypes = {
@@ -28,11 +28,7 @@ class ArticleList extends Component {
 
         const articleItems = articles.map(article => (
             <li key = {article.id}>
-                <Article
-                    article = {article}
-                    isOpen = {isOpen(article.id)}
-                    toggleOpen = {toggleOpenItem(article.id)}
-                />
+                <Link to = {`/articles/${article.id}`}>{article.title}</Link>
             </li>
         ))
 

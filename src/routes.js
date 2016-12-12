@@ -1,15 +1,18 @@
 import React from 'react'
 import { Router, Route, browserHistory } from 'react-router'
-import Root from './components/Root'
-import ArticleList from './components/ArticleList'
-import Filters from './components/Filters'
-import Counter from './components/Counter'
+import Root from './RouteHandlers/Root'
+import ArticleRoot from './RouteHandlers/ArticleRoot'
+import Filters from './RouteHandlers/Filters'
+import Counter from './RouteHandlers/Counter'
+import ArticlePage from './RouteHandlers/ArticlePage'
 
 export default (
     <Router history={browserHistory}>
         <Route path = "/" component={Root}>
             <Route path = "/counter" component={Counter} />
-            <Route path = "/articles" component={ArticleList} />
+            <Route path = "/articles" component={ArticleRoot}>
+                <Route path = ":id" component={ArticlePage} />
+            </Route>
             <Route path = "/filters" component={Filters} />
         </Route>
     </Router>

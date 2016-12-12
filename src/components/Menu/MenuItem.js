@@ -1,4 +1,6 @@
 import React, { Component, PropTypes } from 'react'
+import { Link } from 'react-router'
+import './style.css'
 
 class MenuItem extends Component {
     static propTypes = {
@@ -10,7 +12,7 @@ class MenuItem extends Component {
         const { link, name } = this.props
         return (
             <div>
-                <a href = {link}>{name}</a>
+                <Link to = {link} activeClassName="active">{name}</Link>
             </div>
         )
     }

@@ -16,8 +16,13 @@ class Article extends Component {
     componentWillUpdate() {
     }
 
+    componentDidMount() {
+        const { article, loadArticle, articleId } = this.props
+        if (!article || !article.text) loadArticle(articleId)
+    }
+
     componentWillReceiveProps(nextProps) {
-        if (nextProps.isOpen && !this.props.isOpen && !nextProps.article.text) this.props.loadArticle(this.props.article.id)
+//        if (nextProps.isOpen && !this.props.isOpen && !nextProps.article.text) this.props.loadArticle(this.props.article.id)
     }
 
     componentDidUpdate() {
@@ -25,6 +30,7 @@ class Article extends Component {
 
     render() {
         const { article, toggleOpen } = this.props
+        if (!article) return null
         return (
             <section>
                 <h3 onClick = {toggleOpen}>{article.title}</h3>
@@ -55,16 +61,21 @@ class Article extends Component {
 }
 
 Article.propTypes = {
+    articleId: PropTypes.string.isRequired,
     article: PropTypes.shape({
-        title: PropTypes.string.isRequired,
+        title: PropTypes.string,
         comments: PropTypes.array,
         text: PropTypes.string
-    }).isRequired,
+    }),
     //from connect
     deleteArticle: PropTypes.func
 }
 
 
-export default connect(null, {
+export default connect((state, props) => {
+    return {
+        article: state.articles.getIn(['entities', props.articleId])
+    }
+}, {
     deleteArticle, loadArticle
 })(Article)

@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { Provider } from 'react-redux'
 import store from '../store'
-import Menu from './Menu'
-import MenuItem from './Menu/MenuItem'
+import Menu from '../components/Menu'
+import MenuItem from '../components/Menu/MenuItem'
 
 class Root extends Component {
     static propTypes = {
