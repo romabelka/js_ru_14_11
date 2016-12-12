@@ -1,13 +1,14 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { addComment } from '../AC/comments'
+import { addComment, checkAndLoadComments } from '../AC/comments'
 import Comment from './Comment'
+import Loader from './Loader'
 import toggleOpen from '../decorators/toggleOpen'
 import NewCommentForm from './NewCommentForm'
 
 class CommentList extends Component {
     static propTypes = {
-        commentIds: PropTypes.array.isRequired,
+        article: PropTypes.object.isRequired,
         //from connect
         comments: PropTypes.array.isRequired,
         //from toggleOpen decorator
@@ -20,14 +21,9 @@ class CommentList extends Component {
     }
 
 
-    componentWillReceiveProps() {
-        //console.log('---', 'CL receiving props')
+    componentWillReceiveProps({ isOpen, checkAndLoadComments, article}) {
+        if (isOpen && !this.props.isOpen) checkAndLoadComments(article.id)
     }
-
-    componentWillUpdate() {
-        //console.log('---', 'CL will update')
-    }
-
 
     render() {
         return (
@@ -49,11 +45,12 @@ class CommentList extends Component {
         const { article, comments, isOpen, addComment } = this.props
         const commentForm = <NewCommentForm articleId = {article.id} addComment = {addComment} />
         if (!isOpen || !comments.length) return <div>{commentForm}</div>
+        if (!article.commentsLoaded || article.commentsLoading) return <Loader />
         const commentItems = comments.map(comment => <li key = {comment.id}><Comment comment = {comment} /></li>)
         return <div><ul>{commentItems}</ul>{commentForm}</div>
     }
 }
 
 export default connect((state, props) => ({
-    comments: (props.article.comments || []).map(id => state.comments.get(id))
-}), { addComment })(toggleOpen(CommentList))
+    comments: (props.article.comments || []).map(id => state.comments.getIn(['entities', id]))
+}), { addComment, checkAndLoadComments })(toggleOpen(CommentList))
