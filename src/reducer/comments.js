@@ -8,8 +8,7 @@ const CommentModel = Record({
     user: null
 })
 const defaultState = new ReducerState({
-    entities: new Map({}),
-    loading: false
+    entities: new Map({})
 })
 
 export default (comments = defaultState, action) => {
