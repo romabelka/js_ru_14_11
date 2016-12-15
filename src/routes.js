@@ -1,5 +1,6 @@
 import React from 'react'
-import { Router, Route, IndexRedirect, IndexRoute, Redirect, browserHistory } from 'react-router'
+import { Router, Route, IndexRedirect, IndexRoute, Redirect } from 'react-router'
+import history from './history'
 import Root from './RouteHandlers/Root'
 import ArticleRoot from './RouteHandlers/ArticleRoot'
 import Filters from './RouteHandlers/Filters'
@@ -14,7 +15,7 @@ import ErrorPage from './RouteHandlers/ErrorPage'
 import { authorize } from './store/utils'
 
 export default (
-    <Router history={browserHistory}>
+    <Router history={history}>
         <Route path = "/" component={Root}>
             <Route path = "counter" component={Counter} />
             <Redirect from = "article" to = "/articles"/>

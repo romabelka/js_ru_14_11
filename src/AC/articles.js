@@ -1,6 +1,6 @@
 import { DELETE_ARTICLE, LOAD_ALL_ARTICLES, LOAD_ARTICLE, START, SUCCESS, FAIL } from '../constants'
 import jquery from 'jquery'
-import { browserHistory } from 'react-router'
+import history from '../history'
 
 export function deleteArticle(articleId) {
     return {
@@ -37,8 +37,8 @@ export function loadArticle(id) {
                         payload: { id, error}
                     })
 
-                    browserHistory.replace(`/error?message=Article ${id} Not Found`)
-//                    browserHistory.push(`/error?message=Article ${id} Not Found`)
+                    history.replace(`/error?message=Article ${id} Not Found`)
+//                    history.push(`/error?message=Article ${id} Not Found`)
                 })
         }, 1000)
     }

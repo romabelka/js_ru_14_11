@@ -78,4 +78,7 @@ export default connect((state, props) => {
     }
 }, {
     deleteArticle, loadArticle
-})(Article)
+},
+null,
+{pure: false}
+)(Article)
