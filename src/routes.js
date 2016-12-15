@@ -11,6 +11,7 @@ import NewArticlePage from './RouteHandlers/NewArticlePage'
 import ArticleIndexPage from './RouteHandlers/ArticleIndexPage'
 import NotFound from './RouteHandlers/NotFound'
 import ErrorPage from './RouteHandlers/ErrorPage'
+import { authorize } from './store/utils'
 
 export default (
     <Router history={browserHistory}>
@@ -19,8 +20,13 @@ export default (
             <Redirect from = "article" to = "/articles"/>
             <Route path = "articles" component={ArticleRoot}>
                 <IndexRoute component={ArticleIndexPage}/>
-                <Route path = "/new_article" component={NewArticlePage} />
-                <Route path = ":id" component={ArticlePage} />
+                <Route path = "/new_article" component={NewArticlePage}
+                    onEnter = {(route, replace) => {
+                        authorize(route.location.pathname) || replace('/error?message=Not Authorized')
+                    }}
+                />
+                <Route path = ":id" component={ArticlePage}
+                />
             </Route>
             <Route path = "filters" component={Filters} />
             <Route path = "comments" component = {CommentsRoot}>
