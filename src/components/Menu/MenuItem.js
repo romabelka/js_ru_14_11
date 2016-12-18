@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import './style.css'
+import LocalizedText from '../LocalizedText'
 
 class MenuItem extends Component {
     static propTypes = {
@@ -12,7 +13,7 @@ class MenuItem extends Component {
         const { link, name } = this.props
         return (
             <div>
-                <Link to = {link} activeClassName="active">{name}</Link>
+                <Link to = {link} activeClassName="active"><LocalizedText text={name}/></Link>
             </div>
         )
     }

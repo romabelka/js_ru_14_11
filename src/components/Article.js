@@ -4,6 +4,7 @@ import CommentList from './CommentList'
 import Loader from './Loader'
 import { deleteArticle, loadArticle } from '../AC/articles'
 import { connect } from 'react-redux'
+import LocalizedText from './LocalizedText'
 
 class Article extends Component {
 
@@ -34,7 +35,7 @@ class Article extends Component {
         return (
             <section>
                 <h3 onClick = {toggleOpen}>{article.title}</h3>
-                <a href = "#" onClick = {this.handleDeleteArticle}>delete me</a>
+                <a href = "#" onClick = {this.handleDeleteArticle}><LocalizedText text="delete me" /></a>
                 {this.getBody()}
             </section>
         )

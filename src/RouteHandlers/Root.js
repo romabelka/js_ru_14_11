@@ -3,6 +3,9 @@ import { Provider } from 'react-redux'
 import store from '../store'
 import Menu from '../components/Menu'
 import MenuItem from '../components/Menu/MenuItem'
+import LocalizedText from '../components/LocalizedText'
+import dictionaries from '../dictionaries'
+import Switcher from '../components/Switcher'
 
 class Root extends Component {
     static propTypes = {
@@ -10,16 +13,19 @@ class Root extends Component {
     };
 
     state = {
-        username: ''
+        username: '',
+        language: 'ru'
     }
 
     static childContextTypes = {
-        username: PropTypes.string
+        username: PropTypes.string,
+        dictionary: PropTypes.object
     }
 
     getChildContext() {
         return {
-            username: this.state.username
+            username: this.state.username,
+            dictionary: dictionaries[this.state.language]
         }
     }
 
@@ -27,7 +33,8 @@ class Root extends Component {
         return (
             <Provider store={store}>
                 <div>
-                    username: <input value = {this.state.username} onChange={this.handleUserChange}/>
+                    <Switcher items = {['ru', 'en']} onChange={this.changeLang} active = {this.state.language}/>
+                    <LocalizedText text="User"/>: <input value = {this.state.username} onChange={this.handleUserChange}/>
                     <Menu>
                         <MenuItem link = "/articles" name="Articles index"/>
                         <MenuItem link = "/filters" name="Filters"/>
@@ -39,6 +46,8 @@ class Root extends Component {
             </Provider>
         )
     }
+
+    changeLang = language => this.setState({ language })
 
     handleUserChange = (ev) => {
         this.setState({

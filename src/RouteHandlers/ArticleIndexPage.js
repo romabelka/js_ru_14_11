@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import LocalizedText from '../components/LocalizedText'
 
 class ArticleIndexPage extends Component {
     static propTypes = {
@@ -8,7 +9,7 @@ class ArticleIndexPage extends Component {
     render() {
         return (
             <h1>
-                Choose your article
+                <LocalizedText text="Choose your article" />
             </h1>
         )
     }
