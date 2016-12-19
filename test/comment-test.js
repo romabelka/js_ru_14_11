@@ -6,6 +6,6 @@ import { normalizedComments } from '../src/fixtures'
 
 describe("A suite", function() {
     it("contains body", function() {
-        expect(mount(<Comment comment={normalizedComments[0]} />).find('.test-comment-body').length).to.equal(1)
+        expect(shallow(<Comment comment={normalizedComments[0]} />).find('.test-comment-body').length).to.equal(1)
     })
 });
