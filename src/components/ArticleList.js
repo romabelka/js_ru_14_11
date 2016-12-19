@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { loadAllArticles } from '../AC/articles'
 import Loader from './Loader'
 import { Link } from 'react-router'
+import CSSTransition from 'react-addons-css-transition-group'
+import './list-animation.css'
 
 class ArticleList extends Component {
     static propTypes = {
@@ -33,9 +35,10 @@ class ArticleList extends Component {
         ))
 
         return (
-            <ul ref = {this.getContainerRef}>
+            <CSSTransition component = "ul" transitionName = "list"
+                           transitionEnterTimeout = {500} transitionLeaveTimeout = {500}>
                 {articleItems}
-            </ul>
+            </CSSTransition>
         )
     }
 }
