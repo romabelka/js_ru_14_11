@@ -1,11 +1,11 @@
 import React, { Component, PropTypes }  from 'react'
-import accordion from '../decorators/accordion'
+import accordion from '../../decorators/accordion'
 import { connect } from 'react-redux'
-import { loadAllArticles } from '../AC/articles'
-import Loader from './Loader'
+import { loadAllArticles } from '../../AC/articles'
+import Loader from '../Loader'
 import { Link } from 'react-router'
 import CSSTransition from 'react-addons-css-transition-group'
-import './list-animation.css'
+import './style.css'
 
 class ArticleList extends Component {
     static propTypes = {
