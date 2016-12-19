@@ -6,7 +6,7 @@ function Comment(props) {
     return (
         <div>
             {header}
-            <p>{text} <b>by {user}</b></p>
+            <p className="test-comment-body">{text} <b>by {user}</b></p>
         </div>
     )
 }
